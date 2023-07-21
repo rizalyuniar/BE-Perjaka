@@ -12,7 +12,9 @@ const mainRouter = require('./src/routes/index')
 
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({
+  methods: ["GET","PUT","POST","DELETE"]
+}));
 app.use(helmet());
 app.use(xss())
 app.use('/', mainRouter);
