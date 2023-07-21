@@ -17,8 +17,8 @@ function sendMail(token, email) {
     configMail.sendMail({
         from: process.env.EMAIL_SENDER, // sender address
         to: email, // list of receivers
-        subject: "Ankasa App Activation Link", // Subject line
-        html: `<b>https://blanja.vercel.app/user/verifEmail?token=${token}</b>`, // html body
+        subject: "Perjaka Activation Link", // Subject line
+        html: `<b>https://si-perjaka.vercel.app/verification?token=${token}</b>`, // html body
     });
     return;
 }
