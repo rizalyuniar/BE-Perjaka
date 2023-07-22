@@ -2,8 +2,7 @@ const Pool = require("../config/db");
 
 const findEmail = (email) => {
   return new Promise((resolve, reject) =>
-    Pool.query(
-      `SELECT * FROM users WHERE email='${email}'`,
+    Pool.query(`SELECT * FROM users WHERE email='${email}'`,
       (error, result) => {
         if (!error) {
           resolve(result);
@@ -14,6 +13,19 @@ const findEmail = (email) => {
     )
   );
 };
+
+const totalJam = (email) => {
+  return new Promise((resolve, reject) =>
+  Pool.query(`SELECT u.email, SUM(p.durasi) AS total_durasi FROM pelatihan p JOIN users u ON p.id_user = u.id where email='${email}' GROUP BY u.email`,
+    (error, result) => {
+      if (!error) {
+        resolve(result);
+      } else {
+        reject(error);
+      }
+    }
+  ))
+}
 
 const findId = (id) => {
   return new Promise((resolve, reject) =>
@@ -67,6 +79,7 @@ const countData = () => {
 
 module.exports = {
   findEmail,
+  totalJam,
   findId,
   createUser,
   updateUser,

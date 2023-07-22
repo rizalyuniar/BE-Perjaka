@@ -11,6 +11,7 @@ router.post("/refresh-token", userController.refreshToken);
 
 router.get("/", userController.getAllUser);
 router.get("/profile", protect, userController.profile);
+router.get("/totaljam", protect, userController.getTotalJam);
 // get by id
 router.get("/:id", userController.getDetailUser);
 router.put("/:id", protect, upload.single('photo'), userController.updateUser);

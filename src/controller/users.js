@@ -8,6 +8,7 @@ const {
   selectUser,
   selectAllUser,
   countData,
+  totalJam,
 } = require("../model/users");
 
 const commonHelper = require('../helper/common');
@@ -133,6 +134,14 @@ const userController = {
     } = await findEmail(email);
     delete user.password;
     commonHelper.response(res, user, 200, "get data success");
+  },
+  getTotalJam: async (req, res) => {
+    const email = req.payload.email;
+    const result = await totalJam(email)
+      .then((result) => {
+        commonHelper.response(res, result.rows, 200, "get Total Jam");
+      })
+      .catch((err) => res.send(err));
   },
   getAllUser: async (req, res) => {
     try {
