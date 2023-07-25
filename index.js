@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({
   methods: ["GET","PUT","POST","DELETE"],
-  origin: 'http://127.0.0.1:5173',
   allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: 'http://127.0.0.1:5173',
 }));
 app.use(helmet());
 app.use(xss())
