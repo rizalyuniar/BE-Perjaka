@@ -5,7 +5,7 @@ CREATE TABLE users(
     email VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
     nama VARCHAR NOT NULL,
-    nip BIGINT default('0'),
+    nip VARCHAR default('-'),
     pangkat VARCHAR default('-'),
     jabatan VARCHAR default('-'),
     instansi VARCHAR default('-'),
