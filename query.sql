@@ -10,7 +10,7 @@ CREATE TABLE users(
     jabatan VARCHAR default('-'),
     instansi VARCHAR default('-'),
     npwp VARCHAR default('-'),
-    rekening BIGINT default('0'),
+    rekening VARCHAR default('0'),
     bank VARCHAR default('-'),
     wi VARCHAR,
     photo VARCHAR default('user.png'),

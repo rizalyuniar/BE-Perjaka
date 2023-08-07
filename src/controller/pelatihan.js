@@ -17,9 +17,9 @@ const moment = require('moment-timezone');
 const pelatihanController = {
     getAllPelatihan: async (req, res) => {
         try {
-            let sortBY = req.query.sortBY || "id";
+            let sortBY = req.query.sortBY || "created_at";
             let search = req.query.search || "";
-            let sort = req.query.sort || 'ASC';
+            let sort = req.query.sort || 'DESC';
             const page = Number(req.query.page) || 1;
             const limit = Number(req.query.limit) || 10;
             const offset = (page - 1) * limit;
