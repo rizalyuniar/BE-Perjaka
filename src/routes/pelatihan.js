@@ -6,6 +6,7 @@ const {protect} = require('../middleware/auth')
 const upload = require('../middleware/upload')
 
 router.get("/",  pelatihanController.getAllPelatihan);
+router.get("/cetak",  pelatihanController.cetakAdmin);
 router.get("/detail",  protect, pelatihanController.getPelatihan);
 // create
 router.post("/:id_menu", protect, pelatihanController.createPelatihan);

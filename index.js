@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 app.use(cors({
   methods: ["GET","PUT","POST","DELETE"],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  origin: [`${process.env.FRONTEND_URL}`],
+  // origin: [`${process.env.FRONTEND_URL}`],
 }));
 app.use(helmet());
 app.use(xss())

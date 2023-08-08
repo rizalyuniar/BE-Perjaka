@@ -58,6 +58,10 @@ const findIdUser = (id_user) => {
     )
 }
 
+const cetakAdmin = (sortBY, sort) => {
+    return Pool.query(`select pelatihan.*, users.* from pelatihan left join users on pelatihan.id_user=users.id ORDER BY ${sortBY} ${sort}`);
+}
+
 // const selectAllData = (search, sortBY, sort, limit, offset) => {
 //     return Pool.query(`select workers.*, users.name,users.phone,users.description,users.photo from workers left join users on workers.id_user=users.id WHERE jobdesk LIKE '%${search}%' ORDER BY ${sortBY} ${sort} LIMIT ${limit} OFFSET ${offset}`)
 // }
@@ -86,5 +90,6 @@ module.exports = {
     findId,
     selectMenuPelatihan,
     selectById,
-    findIdUser
+    findIdUser,
+    cetakAdmin
 }

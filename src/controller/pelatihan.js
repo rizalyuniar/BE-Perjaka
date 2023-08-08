@@ -8,7 +8,8 @@ const {
     findId,
     selectMenuPelatihan,
     selectById,
-    findIdUser
+    findIdUser,
+    cetakAdmin
 } = require("../model/pelatihan");
 const commonHelper = require("../helper/common");
 const { v4: uuidv4 } = require("uuid");
@@ -165,6 +166,17 @@ const pelatihanController = {
         } catch (error) {
             console.log(error);
             commonHelper.response(res, null, 500, "Failed Deleted Pelatihan");
+        }
+    },
+    cetakAdmin: async (req, res) => {
+        try {
+            let sortBY = req.query.sortBY || "tanggal";
+            let sort = req.query.sort || 'ASC';
+            const result = await cetakAdmin(sortBY, sort);
+            commonHelper.response(res, result.rows, 200, "get data success");
+        } catch (error) {
+            console.log(error);
+            commonHelper.response(res, null, 500, "Failed Get Data");
         }
     },
 };
