@@ -145,7 +145,7 @@ const userController = {
   },
   getAllUser: async (req, res) => {
     try {
-      let sortBY = req.query.sortBY || "id";
+      let sortBY = req.query.sortBY || "nama";
       let search = req.query.search || "";
       let sort = req.query.sort || 'ASC';
       const page = Number(req.query.page) || 1;

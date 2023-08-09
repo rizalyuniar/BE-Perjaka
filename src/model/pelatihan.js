@@ -58,8 +58,15 @@ const findIdUser = (id_user) => {
     )
 }
 
-const cetakAdmin = (sortBY, sort) => {
-    return Pool.query(`select pelatihan.*, users.* from pelatihan left join users on pelatihan.id_user=users.id ORDER BY ${sortBY} ${sort}`);
+// const cetakAdmin = (sortBY, sort) => {
+//     return Pool.query(`select pelatihan.*, users.* from pelatihan left join users on pelatihan.id_user=users.id ORDER BY ${sortBY} ${sort}`);
+// }
+const cetakAdmin = (sortBy1, sortBy2, sort) => {
+    return Pool.query(`SELECT pelatihan.*, users.* FROM pelatihan LEFT JOIN users ON pelatihan.id_user=users.id ORDER BY ${sortBy1} ${sort}, ${sortBy2} ${sort}`);
+}
+
+const cetakPengajar = (id_user, sortBY, sort) => {
+    return Pool.query(`select pelatihan.*, users.* from pelatihan left join users on pelatihan.id_user=users.id where pelatihan.id_user='${id_user}' order by ${sortBY} ${sort}`);
 }
 
 // const selectAllData = (search, sortBY, sort, limit, offset) => {
@@ -91,5 +98,6 @@ module.exports = {
     selectMenuPelatihan,
     selectById,
     findIdUser,
-    cetakAdmin
+    cetakAdmin,
+    cetakPengajar
 }

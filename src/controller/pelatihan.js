@@ -9,7 +9,8 @@ const {
     selectMenuPelatihan,
     selectById,
     findIdUser,
-    cetakAdmin
+    cetakAdmin,
+    cetakPengajar
 } = require("../model/pelatihan");
 const commonHelper = require("../helper/common");
 const { v4: uuidv4 } = require("uuid");
@@ -170,10 +171,30 @@ const pelatihanController = {
     },
     cetakAdmin: async (req, res) => {
         try {
+            let sortBy1 = req.query.sortBy1 || "nama";
+            let sortBy2 = req.query.sortBy1 || "tanggal";
+            let sort = req.query.sort || 'ASC';
+            const result = await cetakAdmin(sortBy1, sortBy2, sort);
+            commonHelper.response(res, result.rows, 200, "get data success");
+        } catch (error) {
+            console.log(error);
+            commonHelper.response(res, null, 500, "Failed Get Data");
+        }
+    },
+    cetakPengajar: async (req, res) => {
+        try {
+            const id_user = req.payload.id;
             let sortBY = req.query.sortBY || "tanggal";
             let sort = req.query.sort || 'ASC';
-            const result = await cetakAdmin(sortBY, sort);
-            commonHelper.response(res, result.rows, 200, "get data success");
+            const { rowCount } = await cetakPengajar(id_user,sortBY,sort);
+            console.log(rowCount);
+            if (!rowCount) {
+                return res.json({
+                    Message: "data not found",
+                });
+            }
+            const result = await cetakPengajar(id_user, sortBY, sort);
+            commonHelper.response(res, result.rows, 200, "get data success");        
         } catch (error) {
             console.log(error);
             commonHelper.response(res, null, 500, "Failed Get Data");

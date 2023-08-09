@@ -6,9 +6,11 @@ const {protect} = require('../middleware/auth')
 const upload = require('../middleware/upload')
 
 router.get("/",  pelatihanController.getAllPelatihan);
-router.get("/cetak",  pelatihanController.cetakAdmin);
-router.get("/detail",  protect, pelatihanController.getPelatihan);
 // create
+router.get("/cetak",  pelatihanController.cetakAdmin);
+router.get("/cetakpengajar",  protect, pelatihanController.cetakPengajar);
+
+router.get("/detail",  protect, pelatihanController.getPelatihan);
 router.post("/:id_menu", protect, pelatihanController.createPelatihan);
 // // memanggil data secara spesifik sesuai id
 router.get("/:id", pelatihanController.getDetailPelatihan);
